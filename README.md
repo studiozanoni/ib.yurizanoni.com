@@ -2,23 +2,28 @@
 
 Commercial site for YZ International Business, staged for GitHub Pages at **ib.yurizanoni.com**.
 
-This is the preserved and slightly improved one-pager previously published at [yurizanoni.com](https://yurizanoni.com). The apex domain will become Yuri Zanoni’s personal site after cutover. Do not point this repository at the apex.
+This is the preserved and slightly improved one-pager previously published at [yurizanoni.com](https://yurizanoni.com). The apex domain will become Yuri Zanoni’s personal site after cutover. Do not point this repository at the apex. Live apex was left untouched (`studiozanoni/yurizanoni.com` `main` remains the current IB site).
 
 Contact: [yurizanoni@gmail.com](mailto:yurizanoni@gmail.com) · WhatsApp [+852 5262 4903](https://wa.me/85252624903)
 
-## GitHub Pages
+## GitHub Pages — human / UI step still required
 
-- Source: `main`, site root (`/`), deployed with `.github/workflows/pages.yml`.
-- Custom domain file: `CNAME` → `ib.yurizanoni.com`.
-- Preview (until the custom domain is attached): `https://studiozanoni.github.io/ib.yurizanoni.com/`
+The deploy workflow is in `.github/workflows/pages.yml`, but the first runs failed with:
 
-If Pages is not yet enabled after the first push:
+`Create Pages site failed. Error: Resource not accessible by integration`
 
-1. GitHub → this repository → **Settings** → **Pages**.
-2. Source: **GitHub Actions** (preferred), or **Deploy from a branch** → `main` / `/ (root)`.
-3. Custom domain: `ib.yurizanoni.com`. Wait for DNS, then enable **Enforce HTTPS**.
+A `GITHUB_TOKEN` cannot enable Pages on a new repository. Enable it once in the GitHub UI, then the custom domain can be attached.
 
-A `GITHUB_TOKEN` 403 on the Pages API is expected in some setups; use the UI steps above.
+1. Open [Settings → Pages](https://github.com/studiozanoni/ib.yurizanoni.com/settings/pages).
+2. Preferred, matching the live apex setup: **Deploy from a branch** → `main` / `/ (root)` → Save.
+   Alternative: set source to **GitHub Actions**, then re-run the “Deploy GitHub Pages” workflow.
+3. Custom domain: `ib.yurizanoni.com`. After DNS is green, enable **Enforce HTTPS**.
+
+Until that is done, the project URL `https://studiozanoni.github.io/ib.yurizanoni.com/` will 404.
+
+Temporary source preview (CSS-relative, usable now):
+
+- https://raw.githack.com/studiozanoni/ib.yurizanoni.com/main/index.html
 
 ## DNS (Cloudflare)
 
@@ -34,4 +39,4 @@ Do not change MX, SPF, or DKIM. Email forwards (`yuri@`, `fluxoyz@`, `contato@`,
 
 ## Cutover note
 
-After `ib.yurizanoni.com` is serving this site on HTTPS, the personal monument in `studiozanoni/yurizanoni.com` can be merged to `main`. Then add a discreet link from this site back to `https://yurizanoni.com/` if desired. Do not add that link while the apex is still this one-pager.
+After `ib.yurizanoni.com` is serving this site on HTTPS, the personal monument can replace the apex. Then add a discreet link from this site back to `https://yurizanoni.com/` if desired. Do not add that link while the apex is still this one-pager.
